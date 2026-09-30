@@ -1,0 +1,34 @@
+{
+  "state": {
+    "customer_tier": "enterprise",
+    "ticket": "This is an analysis from an error log.\n\n\"analysis\": {\n  \"rootCause\": \"The signing service returned a hint_code value of 'PROCESSING' which is not defined in the local SigningProcessHintCode enum, causing JSON deserialization to fail\",\n  \"missingValue\": \"PROCESSING\",\n  \"allowedValues\": [\n    \"CANCELLED\",\n    \"EXPIRED_TRANSACTION\",\n    \"OUTSTANDING_TRANSACTION\",\n    \"START_FAILED\",\n    \"CERTIFICATE_ERR\",\n    \"USER_CANCEL\",\n    \"USER_SIGN\",\n    \"NO_CLIENT\",\n    \"UNKNOWN\",\n    \"STARTED\",\n    \"USER_MRTD\"\n  ],\n  \"suggestion\": \"Add the missing enum value 'PROCESSING' to the SigningProcessHintCode enum in the source code, or verify the integration contract with the signing service to confirm if this is a newly introduced value\"\n}"
+  },
+  "questions": {
+    "is_bug": {
+      "type": "noul",
+      "instructions": "Do we need to make code changes for this error stack trace?",
+      "criteria": {
+        "true": "this needs code changes.",
+        "false": "this does not need code changes."
+      }
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Does this error need manual handling",
+      "criteria": {
+        "Slack": "Inform a team to handle this.",
+        "Jira": "Create a story to make code changes.",
+        "Retry": "Retry since this is. a temporary glitch."
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgent is to fix this?",
+      "criteria": [
+        "Can wait for the next release",
+        "Should be fixed this week",
+        "Needs immediate attention"
+      ]
+    }
+  }
+}
